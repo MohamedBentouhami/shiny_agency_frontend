@@ -1,6 +1,6 @@
 import React from "react";
 import defaultPict from "../../assets/profile.png";
-import Card from "../../components/Card";
+import CardContainer from "../../components/CardContainer";
 
 const freelanceProfile = [
   {
@@ -24,14 +24,8 @@ function Freelances() {
   return (
     <div>
       <h1>Freelances 👩‍💻👨‍💻👩‍💻</h1>
-      {freelanceProfile.map((profile, index) => (
-        <Card
-          key={`${profile.name}-${index}`}
-          label={profile.name}
-          title={profile.title}
-          picture={profile.picture}
-        />
-      ))}
+      <CardContainer profiles={freelanceProfile}>
+      </CardContainer>
     </div>
   );
 }

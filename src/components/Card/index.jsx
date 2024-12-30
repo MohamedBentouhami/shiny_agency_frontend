@@ -1,19 +1,27 @@
 import "../../styles/Card.css";
 import PropTypes from "prop-types";
-function Card({ label, title, picture }) {
+import defaultPict from "../../assets/profile.png";
+
+function Card({ label, picture, name }) {
   return (
     <div className="card">
-      <span>{label}</span>
+      <span id="label">{label}</span>
       <img src={picture} alt="freelance" />
-      <span>{title}</span>
+      <span>{name}</span>
     </div>
   );
 }
 
 Card.propTypes = {
-  label: PropTypes.string,
-  title: PropTypes.string.isRequired,
-  picture: PropTypes.string,
+  label: PropTypes.string.isRequired,
+  picture: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+};
+
+Card.defaultProps = {
+  label: "",
+  picture: { defaultPict },
+  name: "",
 };
 
 export default Card;

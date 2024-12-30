@@ -1,0 +1,20 @@
+.home-page{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #d6d6d6;
+    margin: 2em;
+    padding: 2em;
+    gap: 3em;
+    div > p{
+        font-size: 3em;
+    }
+    
+}
+#test-link{
+    background-color: #5843e4;
+    color: white;
+    border-radius: 12px;
+    padding: 5px 2.5em;
+    text-decoration: none;
+}

@@ -6,6 +6,7 @@ import Survey from "./pages/Survey/";
 import Header from "./components/header";
 import Error from "./components/Error";
 import Freelances from "./pages/Freelances";
+import "./styles/style.css"
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

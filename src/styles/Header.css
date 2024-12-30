@@ -1,0 +1,23 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  .menu {
+    display: flex;
+    justify-content: end;
+    padding-right: 4em;
+    margin: 2em;
+  }
+}
+
+.link {
+  padding: 10px;
+  color: #8186a0;
+  margin: 0.5em;
+  text-decoration: none;
+  font-size: 18px;
+  border-radius: 12px;
+  &:hover {
+    background-color: #5843e4;
+    color: white;
+  }
+}
