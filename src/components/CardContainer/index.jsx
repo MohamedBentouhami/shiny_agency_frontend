@@ -6,8 +6,8 @@ function CardContainer({ profiles }) {
     <div className="card-container">
       {profiles.map((profile, index) => (
         <Card
-          key={`${profile.name}-${index}`}
-          label={profile.jobTitle}
+          key={profile.id}
+          label={profile.job}
           picture={profile.picture}
           name={profile.name}
         />

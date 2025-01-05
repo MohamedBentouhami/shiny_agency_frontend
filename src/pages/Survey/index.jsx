@@ -11,25 +11,28 @@ function Survey() {
   let nextQuestion = questionNumber + 1;
   let prevQuestion = questionNumber === 1 ? 1 : questionNumber - 1;
   const [questions, setQuestion] = useState({});
-  const [isDataLoading, setDataLoading] = useState(false);
+  const [isDataLoading, setDataLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:8000/survey").then((response) =>
-      response
-        .json()
-        .then(({ surveyData }) => {
-          setQuestion(surveyData);
-          setDataLoading(true);
-        })
-        .catch((error) => console.log(error))
-    );
+    async function fetchSurvey() {
+      try {
+        const response = await fetch("http://localhost:8000/survey");
+        const { surveyData } = await response.json();
+        setQuestion(surveyData);
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setDataLoading(false);
+      }
+    }
+    fetchSurvey();
   }, []);
 
   return (
     <div className="survey-page">
       {questionNumber === 10 ? (
         <Results />
-      ) : !isDataLoading ? (
+      ) : isDataLoading ? (
         <Loader />
       ) : (
         <div>
