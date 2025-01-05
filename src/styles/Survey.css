@@ -1,0 +1,13 @@
+.survey-page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    h1{
+        text-align: center;
+        text-decoration: underline #5843e4;
+    }
+}
+
+.link-wrapper{
+    text-align: center;
+}
