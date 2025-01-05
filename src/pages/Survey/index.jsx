@@ -3,6 +3,7 @@ import Results from "../Results";
 import { useEffect, useState } from "react";
 
 import "../../styles/Survey.css";
+import { Loader } from "../../utils/Atoms";
 
 function Survey() {
   let { questionNumber } = useParams();
@@ -10,11 +11,16 @@ function Survey() {
   let nextQuestion = questionNumber + 1;
   let prevQuestion = questionNumber === 1 ? 1 : questionNumber - 1;
   const [questions, setQuestion] = useState({});
+  const [isDataLoading, setDataLoading] = useState(false);
+
   useEffect(() => {
     fetch("http://localhost:8000/survey").then((response) =>
       response
         .json()
-        .then(({ surveyData }) => setQuestion(surveyData))
+        .then(({ surveyData }) => {
+          setQuestion(surveyData);
+          setDataLoading(true);
+        })
         .catch((error) => console.log(error))
     );
   }, []);
@@ -23,6 +29,8 @@ function Survey() {
     <div className="survey-page">
       {questionNumber === 10 ? (
         <Results />
+      ) : !isDataLoading ? (
+        <Loader />
       ) : (
         <div>
           <h1>Questions {questionNumber}</h1>
