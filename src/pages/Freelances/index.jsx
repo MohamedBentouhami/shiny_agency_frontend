@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import CardContainer from "../../components/CardContainer";
 import "../../styles/Freelances.css";
-import { Loader } from "../../utils/Atoms";
+import { Loader } from "../../utils/loader/Atoms";
 
 function Freelances() {
   const [freelancersList, setFreeLancersList] = useState([]);

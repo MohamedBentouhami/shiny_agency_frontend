@@ -21,3 +21,8 @@
     color: white;
   }
 }
+
+.active{
+  background-color: #5843e4;
+  color: white;
+}
