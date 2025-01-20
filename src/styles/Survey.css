@@ -11,3 +11,20 @@
 .link-wrapper{
     text-align: center;
 }
+
+.answers{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    button{
+        padding: 3em 6em;
+        margin: 2em;
+        border-radius: 20px;
+    }
+}
+
+
+.clicked-btn{
+    border: 5px solid red;
+
+}
