@@ -4,7 +4,8 @@ import Results from "../Results";
 import "../../styles/Survey.css";
 import { Loader } from "../../utils/loader/Atoms";
 import { useFetch } from "../../utils/Hooks";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { SurveyContext } from "../../utils/context";
 
 function Survey() {
   let { questionNumber } = useParams();
@@ -14,31 +15,26 @@ function Survey() {
 
   const { data, isLoading, error } = useFetch("http://localhost:8000/survey");
   const { surveyData } = data;
-  const [noIsActive, toggleNoActive] = useState(false);
-  const [yesIsActive, toggleYesActive] = useState(false);
+  const [noIsActive, activateNoBtn] = useState(false);
+  const [yesIsActive, activateYesBtn] = useState(false);
 
-  const answers = new Map();
+  const { saveAnswers, answers } = useContext(SurveyContext);
+  function saveReply(answer, btnType) {
+    saveAnswers({ [questionNumber]: answer });
+    if (btnType === "btn-yes") {
+      activateYesBtn(!yesIsActive);
+      activateNoBtn(false);
+    }
+    if (btnType === "btn-no") {
+      activateNoBtn(!noIsActive);
+      activateYesBtn(false);
+    }
+  }
 
   if (error) {
     return <span>Some troubles</span>;
   }
 
-  const yesTreatment = () => {
-    toggleYesActive(!yesIsActive);
-    if (noIsActive) {
-      toggleNoActive(false);
-    }
-    answers.set(questionNumber - 1, 0);
-    console.log("Map", answers);
-  };
-  const noTreatment = () => {
-    toggleNoActive(!noIsActive);
-    if (yesIsActive) {
-      toggleYesActive(false);
-    }
-    answers.set(questionNumber - 1, 1);
-    console.log("Map", answers);
-  };
   return (
     <div className="survey-page">
       {isLoading ? (
@@ -49,13 +45,13 @@ function Survey() {
           <p>{surveyData && surveyData[questionNumber]}</p>
           <div className="answers">
             <button
-              onClick={() => yesTreatment()}
+              onClick={() => saveReply(true, "btn-yes")}
               className={`${yesIsActive && "clicked-btn"}`}
             >
               Yes
             </button>
             <button
-              onClick={() => noTreatment()}
+              onClick={() => saveReply(false, "btn-no")}
               className={`${noIsActive && "clicked-btn"}`}
             >
               No

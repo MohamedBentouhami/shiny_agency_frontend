@@ -1,21 +1,32 @@
+import { useLocation } from "react-router-dom";
 import { useFetch } from "../../utils/Hooks";
+import { useContext } from "react";
+import { SurveyContext } from "../../utils/context";
+import { Loader } from "../../utils/loader/Atoms";
 
 function Results() {
-  const queryParams = "a1=1&a2=0";
+  const surveyData = useContext(SurveyContext);
+  console.log(surveyData.answers);
+  let answers = formatAnswers(surveyData.answers);
 
   const { data, isLoading, error } = useFetch(
-    `http://localhost:8000/results?${queryParams}`
+    `http://localhost:8000/results?${answers}`
   );
   console.log("data : ", data);
-  if(error){
-    return "some troubles !"
+  if (error) {
+    return "some troubles !";
   }
-  
-  return (
-    <div>
-      <p>Results</p>
-    </div>
-  );
+
+  return <div>{isLoading ? <Loader /> : <p>Results</p>}</div>;
+}
+
+function formatAnswers(answers) {
+  let queryParam = "";
+  Object.entries(answers).forEach((elem) => {
+    let letter = String.fromCharCode(96 + Number(elem[0]));
+    queryParam += `${letter}${elem[0]}=${elem[1] ? 1 : 0}&`;
+  });
+  return queryParam;
 }
 
 export default Results;

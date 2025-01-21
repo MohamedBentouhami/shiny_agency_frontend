@@ -8,11 +8,13 @@ import Error from "./components/Error";
 import Freelances from "./pages/Freelances";
 import "./styles/Style.css";
 import Results from "./pages/Results";
+import { SurveyProvider } from "./utils/context";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Router>
+      <SurveyProvider>
         <Header />
         <Routes>
           <Route path="/" element={<Home />}></Route>
@@ -21,6 +23,7 @@ root.render(
           <Route path="/freelances/" element={<Freelances />}></Route>
           <Route path="*" element={<Error />}></Route>
         </Routes>
+      </SurveyProvider>
     </Router>
   </React.StrictMode>
 );
