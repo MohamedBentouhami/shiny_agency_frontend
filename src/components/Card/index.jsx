@@ -1,6 +1,6 @@
 import "../../styles/Card.css";
 import PropTypes from "prop-types";
-import defaultPict from "../../assets/profile.png";
+import defaultPict from "../../assets/default-profile.png";
 
 function Card({ label, picture, name }) {
   return (

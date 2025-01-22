@@ -11,7 +11,9 @@ function Home() {
           <br /> and you'll take care of the rest
           <br /> with our best talents
         </p>
-        <Link id="test-link" to="/survey/1">Take the test</Link>
+        <Link id="test-link" to="/survey/1">
+          Take the test
+        </Link>
       </div>
 
       <img src={homeIllustration} alt="home-illustation"></img>

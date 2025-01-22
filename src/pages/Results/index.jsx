@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { SurveyContext } from "../../utils/context";
 import { Loader } from "../../utils/loader/Atoms";
 import ResultContainer from "../../components/ResultContainer";
-import "../../styles/Results.css"
+import "../../styles/Results.css";
 
 function Results() {
   const surveyData = useContext(SurveyContext);

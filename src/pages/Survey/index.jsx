@@ -6,6 +6,7 @@ import { Loader } from "../../utils/loader/Atoms";
 import { useFetch } from "../../utils/Hooks";
 import { useContext, useState } from "react";
 import { SurveyContext } from "../../utils/context";
+import { element } from "prop-types";
 
 function Survey() {
   let { questionNumber } = useParams();
