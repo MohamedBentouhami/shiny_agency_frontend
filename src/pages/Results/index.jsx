@@ -1,23 +1,26 @@
-import { useLocation } from "react-router-dom";
 import { useFetch } from "../../utils/Hooks";
 import { useContext } from "react";
 import { SurveyContext } from "../../utils/context";
 import { Loader } from "../../utils/loader/Atoms";
+import ResultContainer from "../../components/ResultContainer";
+import "../../styles/Results.css"
 
 function Results() {
   const surveyData = useContext(SurveyContext);
-  console.log(surveyData.answers);
   let answers = formatAnswers(surveyData.answers);
 
   const { data, isLoading, error } = useFetch(
     `http://localhost:8000/results?${answers}`
   );
-  console.log("data : ", data);
   if (error) {
     return "some troubles !";
   }
 
-  return <div>{isLoading ? <Loader /> : <p>Results</p>}</div>;
+  return (
+    <div className="results-page">
+      {isLoading ? <Loader /> : <ResultContainer data={data.resultsData} />}
+    </div>
+  );
 }
 
 function formatAnswers(answers) {
